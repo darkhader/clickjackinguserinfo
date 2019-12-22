@@ -13,7 +13,9 @@ mongoose.connect(
     else console.log("Success")
 
 });
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
 
 
@@ -23,11 +25,6 @@ app.get('/', (req, res) => {
 app.get('/sandbox', (req, res) => {
 	res.sendFile(__dirname + '/public/sandbox.html');
 });
-
-app.use("/api/users", userRouter);
-
-
-app.use(express.static('public'));
 app.use(session({
 	secret:"keybroadhero",
 	resave:false,
@@ -38,6 +35,7 @@ app.use(session({
 		maxAge:7*24*60*60*1000
 	}
 }))
+app.use("/api/users", userRouter);
 const port = process.env.PORT || 4000;
 app.listen(port, (err) => {
 	if (err) console.log("err 2 la",err)
