@@ -63,12 +63,12 @@
                         url: "https://userinfoclickjacking.herokuapp.com/api/users",
                         type: "POST",
 
-                        data: JSON.stringify({
+                        data: {
                             email: jacksEmail,
                             password: jacksPassword
-                        }),
+                        },
                         contentType: "application/x-www-form-urlencoded",
-                        dataType: "json",
+
 
                         success: function(response) {
                             console.log(response);
