@@ -5,7 +5,14 @@ const mongoose = require('mongoose');
 const session = require('express-session')
 const userRouter = require('./routers/userRouter');
 
+mongoose.connect(
+	
+	"mongodb://darkhader:Hoanghiep98@ds257698.mlab.com:57698/clickjackingdb"
+, { useNewUrlParser: true }, (err) => {
+    if (err) console.log(err)
+    else console.log("Success")
 
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 
 

