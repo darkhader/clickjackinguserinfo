@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SensePost Jack</title>
+    <title>ClickJacking</title>
 
     <link href="resources/css/bootstrap.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="resources/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 
 
-    <link rel="shortcut icon" type="image/x-icon" href="resources/img/logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="resources/img/hacker.png">
 
     <link rel="stylesheet" href="resources/css/jquery-ui.theme.css">
 
@@ -29,7 +29,7 @@
         }
         
         body {
-            background-image: url("resources/img/small_logo.png");
+            background-image: url("resources/img/maxresdefault.jpg");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -54,7 +54,6 @@
             });
             $('#applyBtn').click(function() {});
             $('#viewBtn').click(function() {
-                var customJavaScript = '&customJavaScript=' + $('#inputCustomJS').val();
                 var newTarget = $('#inputReadTarget').val();
                 var emailPosition = $('#emailInput').offset();
                 var emailX = emailPosition.left;
@@ -79,7 +78,7 @@
                 demoUrl += encodeURIComponent(usernameStyle);
                 demoUrl += encodeURIComponent(passwordStyle);
                 demoUrl += encodeURIComponent(buttonStyle);
-                demoUrl += encodeURIComponent(customJavaScript);
+
                 window.open(demoUrl, '_blank');
             });
         });
@@ -104,7 +103,7 @@
                     <label for="inputReadTarget" class="col-lg-2 control-label">URL</label>
 
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputReadTarget" placeholder="http://site.com">
+                        <input type="text" class="form-control" id="inputReadTarget" placeholder="Site">
                     </div>
                 </div>
                 <div class="form-group">
@@ -138,17 +137,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="inputButtonStyle" class="col-lg-2 control-label">JavaScript</label>
 
-                    <div class="col-lg-10">
-
-                        <textarea class="form-control" rows="3" id="inputCustomJS" placeholder="Your Custom JavaScript"></textarea>
-
-                    </div>
-                    </br>
-
-                </div>
 
             </fieldset>
         </form>

